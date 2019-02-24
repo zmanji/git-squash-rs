@@ -1,0 +1,19 @@
+[package]
+name = "git-squash-rs"
+version = "0.1.0"
+authors = ["Zameer Manji <zmanji@gmail.com>"]
+edition = "2018"
+
+[dependencies.clap]
+version = "2.32.0"
+default-features = false
+
+[dependencies.git2]
+version = "0.8.0"
+default-features = false
+
+[profile.release]
+opt-level = 'z'
+lto = true
+codegen-units = 1
+panic = 'abort'
