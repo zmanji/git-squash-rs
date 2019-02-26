@@ -76,7 +76,7 @@ fn is_dirty(statuses: &git2::Statuses) -> bool {
         }
     }
 
-    return false;
+    false
 }
 
 fn squash(branch_name: &str) -> Result<(), GitSquashError> {
@@ -97,7 +97,7 @@ fn squash(branch_name: &str) -> Result<(), GitSquashError> {
         .into_reference();
     let branch = branch
         .target()
-        .ok_or(GitSquashError::SymbolicRef(branch_name.to_string()))?;
+        .ok_or_else(|| GitSquashError::SymbolicRef(branch_name.to_string()))?;
 
     let mb = repo.merge_base(branch, head)?;
 
