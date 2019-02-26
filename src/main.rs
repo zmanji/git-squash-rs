@@ -3,6 +3,7 @@ extern crate git2;
 
 use std::error;
 use std::fmt;
+use std::process;
 
 use clap::{crate_version, App, Arg};
 
@@ -163,6 +164,9 @@ fn main() {
 
     match squash(branch) {
         Ok(()) => {}
-        Err(e) => println!("error: {}", e),
+        Err(e) => {
+            eprintln!("error: {}", e);
+            process::exit(1);
+        }
     }
 }
