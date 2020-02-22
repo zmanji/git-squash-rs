@@ -37,7 +37,7 @@ impl error::Error for GitSquashError {
         }
     }
 
-    fn cause(&self) -> Option<&error::Error> {
+    fn cause(&self) -> Option<&dyn error::Error> {
         match *self {
             GitSquashError::Git2(ref e) => Some(e),
             GitSquashError::DirtyRepo => None,
